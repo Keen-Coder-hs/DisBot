@@ -9,6 +9,8 @@ from keep_alive import keep_alive
 
 client = discord.Client()
 
+
+# List of Sad words and encouragements
 sad_words = ["depressed","unhappy","miserable","angry","depressing"]
 
 starter_encouragements = [
@@ -18,6 +20,8 @@ starter_encouragements = [
 if "responding" not in db.keys():
   db["responding"] = True
 
+  
+#To get quote from website's API
 def get_quote():
   response = requests.get("https://zenquotes.io/api/random")
   json_data = json.loads(response.text)
@@ -48,6 +52,8 @@ async def on_ready():
 async def on_message(message):
   if message.author == client.user:
     return
+
+  # Command for the bot to respond to a message
   
   msg = message.content
 
@@ -64,6 +70,8 @@ async def on_message(message):
     if any(word in msg for word in sad_words):
       await message.channel.send(random.choice(options))
 
+      
+   # To add and delete new elements in the encouragement list   
   if msg.startswith("!!new"):
     encouraging_message = msg.split("!!new ",1)[1]
     update_encouragements(encouraging_message)
