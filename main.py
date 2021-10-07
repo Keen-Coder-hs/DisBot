@@ -29,6 +29,7 @@ def get_quote():
 
   return(quote)
 
+#For the list of encouraging words
 def update_encouragements(encouraging_message):
   if "encouragements" in db.keys():
     encouragements = db["encouragements"]
